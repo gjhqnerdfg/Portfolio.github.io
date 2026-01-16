@@ -73,6 +73,7 @@ body {
 }
 .flip-card:hover .flip-inner {
   transform: rotateY(180deg);
+  /* transform: scale(0.97); */
 }
 .flip-front, .flip-back {
   position: absolute;

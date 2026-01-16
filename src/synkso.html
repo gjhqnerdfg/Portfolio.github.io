@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synkso</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f5f6fa;
+      color: #333;
+    }
+
+    .page-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: white;
+      background: #2c3e50;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #1a252f;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      color: #2c3e50;
+    }
+
+    .intro {
+      max-width: 600px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .content {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .content.reverse {
+      padding: 50px 350px;
+      flex-direction: row-reverse;
+    }
+
+    .content img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .content-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .content {
+        flex-direction: column;
+        text-align: left;
+      }
+
+      .intro {
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+
+    <a href="../index.html" class="back-btn">← Retour</a>
+
+    <h1>Groupe Synkso – Services Proximité & Sédentaire - Réseau & Informatique</h1>
+
+    <p class="intro">
+      Lors de mon stage au Groupe Synkso à Marseille,
+      j’ai travaillé au sein de deux services complémentaires :
+      le service de proximité et le service sédentaire,
+      ce qui m’a permis d’avoir une vision globale du support informatique en entreprise.
+    </p>
+
+    <div class="content">
+      <img src="../img/tel.jpeg">
+
+      <div class="content-text">
+        <p>
+          Au sein du service de proximité,
+          je me déplaçais directement dans les entreprises clientes afin de diagnostiquer et
+          résoudre les problèmes informatiques.
+          Ces interventions concernaient aussi bien le matériel que les logiciels,
+          ainsi que les dysfonctionnements réseau.
+        </p>
+
+        <p>
+          En parallèle, au sein du service sédentaire, j’assurais le support à distance,
+          en prenant généralement la main sur les ordinateurs des entreprises clientes afin de résoudre les incidents,
+          d’effectuer des configurations et d’assister les utilisateurs à distance.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content reverse" style="margin-top: 60px;">
+    <img src="../img/tel.jpeg">
+
+    <div class="content-text">
+      <p>
+        Durant ce stage, j’ai également participé à la maintenance informatique et réseau,
+        à la gestion de serveurs, ainsi qu’à la gestion du matériel et des stocks,
+        avec un suivi réalisé à l’aide d’Excel.
+      </p>
+
+      <p>
+        Cette expérience m’a permis de développer mon sens du service, mon autonomie,
+        ma réactivité, ainsi que mes compétences en relation client et en résolution de problèmes techniques.
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

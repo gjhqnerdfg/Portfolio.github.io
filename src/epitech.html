@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epitech Marseille</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f5f6fa;
+      color: #333;
+    }
+
+    .page-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    /* Bouton retour */
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: white;
+      background: #2c3e50;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #1a252f;
+    }
+
+    /* Titre */
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      color: #2c3e50;
+    }
+
+    /* Premier paragraphe */
+    .intro {
+      max-width: 650px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* Bloc image + texte */
+    .content {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .content img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .content-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .content {
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .intro {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+
+    <a href="../index.html" class="back-btn">← Retour</a>
+
+    <h1>Epitech – Programme Grande École, Marseille</h1>
+
+    <p class="intro">
+      Je suis actuellement en formation à Epitech Marseille dans le cadre du Programme
+      Grande École (PGE), un cursus de cinq années orienté vers l’informatique et le
+      développement logiciel. Cette formation met l’accent sur la pratique, les projets
+      et l’apprentissage par l’autonomie.
+    </p>
+
+    <div class="content">
+      <img src="../img/epitech.jpg" alt="Epitech Marseille">
+
+      <div class="content-text">
+        <p>
+          Le fonctionnement pédagogique d’Epitech m’a permis de développer ma capacité
+          à apprendre par moi-même, à résoudre des problèmes complexes et à travailler
+          efficacement en équipe sur des projets concrets.
+        </p>
+
+        <p>
+          Cette formation renforce ma rigueur, mon autonomie et mon esprit d’initiative.
+          Elle me prépare progressivement au monde professionnel et à des carrières
+          dans le développement, les systèmes et les technologies numériques.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
