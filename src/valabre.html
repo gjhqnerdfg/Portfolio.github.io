@@ -3,123 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lycée de Valabre</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #f5f6fa;
-      color: #333;
-    }
-
-    /* Container principal */
-    .page-container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    /* Bouton retour */
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 20px;
-      text-decoration: none;
-      color: white;
-      background: #2c3e50;
-      padding: 10px 20px;
-      border-radius: 30px;
-      transition: background 0.3s;
-    }
-
-    .back-btn:hover {
-      background: #1a252f;
-    }
-
-    /* Titre */
-    h1 {
-      margin-bottom: 30px;
-      font-size: 2.2rem;
-      color: #2c3e50;
-    }
-
-    /* Premier paragraphe */
-    .intro {
-      max-width: 600px;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
-
-    /* Bloc image + texte */
-    .content {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .content img {
-      width: 100%;
-      max-width: 420px;
-      border-radius: 15px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .content-text {
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .content {
-        flex-direction: column;
-        text-align: left;
-      }
-
-      .intro {
-        max-width: 100%;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
+  <title>Valabre — Portfolio Thomas Migneret</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="detail.css">
 </head>
 <body>
 
-  <div class="page-container">
+  <div class="scan-line"></div>
+  <div class="noise-overlay"></div>
 
-    <a href="../index.html" class="back-btn">← Retour</a>
+  <header class="page-header">
+    <div class="header-inner">
+      <a href="../index.html" class="back-btn">&#8592; Retour</a>
+      <div class="breadcrumb">
+        <span>Formation</span>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Valabre</span>
+      </div>
+    </div>
+  </header>
 
-    <h1>Lycée agricole de Valabre – Gardanne</h1>
+  <section class="detail-hero">
+    <div class="detail-hero-bg"></div>
+    <div class="detail-hero-inner">
+      <div class="detail-tag">Formation — Lycée agricole</div>
+      <h1>Lycée agricole de Valabre — Gardanne</h1>
+      <p class="detail-intro">
+        J'ai effectué une année au lycée agricole de Valabre à Gardanne, en internat.
+        Cette expérience m'a permis de gagner en autonomie et en débrouillardise, car la vie
+        en internat demande de savoir s'organiser seul au quotidien.
+      </p>
+    </div>
+  </section>
 
-    <p class="intro">
-      J’ai effectué une année au lycée agricole de Valabre à Gardanne, qui est un internat.
-      Cette expérience m’a permis de gagner en autonomie et en débrouillardise, car la vie
-      en internat demande de savoir s’organiser seul au quotidien.
-    </p>
+  <div class="detail-body">
 
-    <div class="content">
-      <img src="../img/valabre.jpeg" alt="Lycée de Valabre">
-
-      <div class="content-text">
+    <div class="content-block">
+      <div class="block-image">
+        <img src="../img/valabre.jpeg" alt="Lycée de Valabre">
+      </div>
+      <div class="block-text">
+        <span class="block-label">Expérience &amp; apprentissages</span>
         <p>
-          J’ai appris à gérer mon temps entre les cours, le travail personnel et la vie
-          collective. La vie en internat m’a également aidé à développer mon sens des
-          responsabilités et à m’adapter à un nouvel environnement.
+          J'ai appris à gérer mon temps entre les cours, le travail personnel et la vie
+          collective. La vie en internat m'a également aidé à développer mon sens des
+          responsabilités et à m'adapter à un nouvel environnement.
         </p>
-
         <p>
-          Le travail en groupe et la vie avec les autres élèves m’ont appris l’entraide,
+          Le travail en groupe et la vie avec les autres élèves m'ont appris l'entraide,
           le respect et la communication. Cette année à Valabre a été une étape importante
           dans mon parcours, tant sur le plan scolaire que personnel.
         </p>
+        <div class="skill-tags">
+          <span class="skill-tag">Autonomie</span>
+          <span class="skill-tag">Organisation</span>
+          <span class="skill-tag">Vie en internat</span>
+          <span class="skill-tag">1 année</span>
+        </div>
       </div>
     </div>
 
   </div>
 
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-mono">thomas.migneret@epitech.eu</span>
+      <span class="footer-mono">&#169; 2025</span>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.content-block').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

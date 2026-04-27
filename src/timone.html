@@ -3,138 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Timone</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #f5f6fa;
-      color: #333;
-    }
-
-    .page-container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 20px;
-      text-decoration: none;
-      color: white;
-      background: #2c3e50;
-      padding: 10px 20px;
-      border-radius: 30px;
-      transition: background 0.3s;
-    }
-
-    .back-btn:hover {
-      background: #1a252f;
-    }
-
-    h1 {
-      margin-bottom: 30px;
-      font-size: 2.2rem;
-      color: #2c3e50;
-    }
-
-    .intro {
-      max-width: 600px;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
-
-    .content {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .content.reverse {
-      padding: 50px 350px;
-      flex-direction: row-reverse;
-    }
-
-    .content img {
-      width: 100%;
-      max-width: 420px;
-      border-radius: 15px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .content-text {
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 900px) {
-      .content {
-        flex-direction: column;
-        text-align: left;
-      }
-
-      .intro {
-        max-width: 100%;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
+  <title>Hôpital La Timone — Portfolio Thomas Migneret</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="detail.css">
 </head>
 <body>
 
-  <div class="page-container">
+  <div class="scan-line"></div>
+  <div class="noise-overlay"></div>
 
-    <a href="../index.html" class="back-btn">← Retour</a>
-
-    <h1>Hôpital de la Timone – Service Informatique / Réseau - Réseau & Informatique</h1>
-
-    <p class="intro">
-      Lors de mon expérience à l’Hôpital de la Timone,
-      j’ai exercé des missions similaires dans le domaine du réseau et de l’informatique,
-      au sein d’un environnement hospitalier exigeant et structuré.
-    </p>
-
-    <div class="content">
-      <img src="../img/hp.jpg">
-
-      <div class="content-text">
-        <p>
-          J’ai participé à la préparation et à la configuration de téléphones de bureau
-          destinés aux différents services de l’établissement, en veillant à leur bon fonctionnement et
-          à leur conformité aux besoins des utilisateurs.
-        </p>
-
-        <p>
-          J’ai également assuré la maintenance du réseau et la maintenance informatique,
-          incluant le dépannage matériel et logiciel, l’assistance aux utilisateurs et
-          la résolution d’incidents techniques.
-        </p>
+  <header class="page-header">
+    <div class="header-inner">
+      <a href="../index.html" class="back-btn">&#8592; Retour</a>
+      <div class="breadcrumb">
+        <span>Stages</span>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">La Timone</span>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="content reverse" style="margin-top: 60px;">
-    <img src="../img/ti.jpeg">
-
-    <div class="content-text">
-      <p>
-        Une partie de mes missions portait sur la gestion et le suivi des serveurs,
-        garantissant leur disponibilité et leur bon fonctionnement.
-      </p>
-
-      <p>
-        Enfin, j’étais en charge de la gestion des stocks de téléphones de bureau,
-        réalisée à l’aide d’Excel, permettant un suivi précis du matériel,
-        des entrées et des sorties.
+  <section class="detail-hero">
+    <div class="detail-hero-bg"></div>
+    <div class="detail-hero-inner">
+      <div class="detail-tag">Stage — Technicien réseau &amp; informatique</div>
+      <h1>Hôpital de la Timone — Service Informatique &amp; Réseau</h1>
+      <p class="detail-intro">
+        Lors de mon expérience à l'Hôpital de la Timone, j'ai exercé des missions dans le
+        domaine du réseau et de l'informatique, au sein d'un environnement hospitalier
+        exigeant et structuré.
       </p>
     </div>
+  </section>
+
+  <div class="detail-body">
+
+    <div class="content-block">
+      <div class="block-image">
+        <img src="../img/hp.jpg" alt="Hôpital La Timone">
+      </div>
+      <div class="block-text">
+        <span class="block-label">Missions principales</span>
+        <p>
+          J'ai participé à la préparation et à la configuration de téléphones de bureau
+          destinés aux différents services de l'établissement, en veillant à leur bon
+          fonctionnement et à leur conformité aux besoins des utilisateurs.
+        </p>
+        <p>
+          J'ai également assuré la maintenance du réseau et la maintenance informatique,
+          incluant le dépannage matériel et logiciel, l'assistance aux utilisateurs et
+          la résolution d'incidents techniques.
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">Config. téléphonie</span>
+          <span class="skill-tag">Maintenance réseau</span>
+          <span class="skill-tag">Support utilisateur</span>
+          <span class="skill-tag">Milieu hospitalier</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block reverse">
+      <div class="block-image">
+        <img src="../img/ti.jpeg" alt="Gestion serveurs Timone">
+      </div>
+      <div class="block-text">
+        <span class="block-label">Administration &amp; stocks</span>
+        <p>
+          Une partie de mes missions portait sur la gestion et le suivi des serveurs,
+          garantissant leur disponibilité et leur bon fonctionnement.
+        </p>
+        <p>
+          Enfin, j'étais en charge de la gestion des stocks de téléphones de bureau,
+          réalisée à l'aide d'Excel, permettant un suivi précis du matériel,
+          des entrées et des sorties.
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">Administration serveurs</span>
+          <span class="skill-tag">Gestion de stocks</span>
+          <span class="skill-tag">Excel</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-mono">thomas.migneret@epitech.eu</span>
+      <span class="footer-mono">&#169; 2025</span>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.content-block').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

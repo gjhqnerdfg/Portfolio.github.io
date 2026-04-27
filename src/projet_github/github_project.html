@@ -1,117 +1,138 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Portfolio Professionnel</title>
-        <link rel="stylesheet" href="style_git.css"/>
-    </head>
-    <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projets Epitech — Thomas Migneret</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style_git.css"/>
+</head>
+<body>
 
-    <!-- ABOUT ME -->
-        <section class="about-me">
-            <div class="about-container">
-                <div class="about-text">
-                    <h1 id="titre">Projets EPITECH</h1>
-                </div>
-                <a href="../../index.html" class="back-btn">← HOME</a>
-            </div>
-        </section>
+  <div class="scan-line"></div>
+  <div class="noise-overlay"></div>
 
-    <!-- PROJETS -->
-        <section class="section-title">
-            <h2 id="cass">Cyber</h2>
-            <div class="card-grid">
+  <header class="page-header">
+    <div class="header-inner">
+      <a href="../../index.html" class="back-btn">&#8592; HOME</a>
+      <div class="header-title">
+        <span class="header-mono">epitech /</span>
+        <h1 id="titre">Projets</h1>
+      </div>
+      <div class="header-spacer"></div>
+    </div>
+  </header>
 
-                <a href="https://github.com/Thomas-Migneret/Hack-Juice" class="card-link">
-                    <div class="flip-card">
-                        <div class="flip-inner">
-                            <div class="flip-front"><img src="../../img/Hackeur_red.png" alt=""></div>
-                            <div class="flip-back"><p>Hack & Juice</p></div>
-                        </div>
-                    </div>
-                </a>
+  <section class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Cybersécurité</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="card-grid">
+      <a href="https://github.com/Thomas-Migneret/Hack-Juice" class="card-link" target="_blank" rel="noopener">
+        <div class="flip-card featured">
+          <div class="flip-inner">
+            <div class="flip-front"><img src="../../img/Hackeur_red.png" alt="Hack and Juice"><div class="card-overlay"></div></div>
+            <div class="flip-back"><div class="card-back-content"><span class="card-cat">CTF</span><p class="card-title">Hack &amp; Juice</p><span class="card-duration">GitHub &#8594;</span></div></div>
+          </div>
+        </div>
+      </a>
+      <a href="projet-chef-oeuvre.html" class="card-link">
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><img src="../../img/Hackeur_purple.png" alt="Obsidian"><div class="card-overlay"></div></div>
+            <div class="flip-back"><div class="card-back-content"><span class="card-cat">Reverse / Web</span><p class="card-title">Obsidian</p><span class="card-duration">Voir &#8594;</span></div></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
 
-                <a href="projet-chef-oeuvre.html" class="card-link">
-                    <div class="flip-card">
-                        <div class="flip-inner">
-                            <div class="flip-front"><img src="../../img/Hackeur_purple.png" alt=""></div>
-                            <div class="flip-back"><p>Obsidian</p></div>
-                        </div>
-                    </div>
-                </a>
-        </section>
+  <section class="portfolio-section alt-bg">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Graphique</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="card-grid">
+      <a href="https://github.com/Thomas-Migneret/My_hunter" class="card-link" target="_blank" rel="noopener">
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><img src="../../img/duck.png" alt="My Hunter"><div class="card-overlay"></div></div>
+            <div class="flip-back"><div class="card-back-content"><span class="card-cat">C / CSFML</span><p class="card-title">My_hunter</p><span class="card-duration">GitHub &#8594;</span></div></div>
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/Thomas-Migneret/My_world" class="card-link" target="_blank" rel="noopener">
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><img src="../../img/earth.png" alt="My World"><div class="card-overlay"></div></div>
+            <div class="flip-back"><div class="card-back-content"><span class="card-cat">C / CSFML</span><p class="card-title">My_world</p><span class="card-duration">GitHub &#8594;</span></div></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
 
-        <section class="section-title">
-            <h2 id="cass">Graphique</h2>
-            <div class="card-grid">
+  <section class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Shell</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="card-grid">
+      <a href="https://github.com/Thomas-Migneret/Mini-shell" class="card-link" target="_blank" rel="noopener">
+        <div class="flip-card featured">
+          <div class="flip-inner">
+            <div class="flip-front"><img src="../../img/shell.png" alt="Mini Shell"><div class="card-overlay"></div></div>
+            <div class="flip-back"><div class="card-back-content"><span class="card-cat">C / Unix</span><p class="card-title">Mini-shell</p><span class="card-duration">GitHub &#8594;</span></div></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
 
-                <a href="https://github.com/Thomas-Migneret/My_hunter" class="card-link">
-                    <div class="flip-card">
-                        <div class="flip-inner">
-                            <div class="flip-front"><img src="../../img/duck.png" alt=""></div>
-                            <div class="flip-back"><p>My_hunter</p></div>
-                        </div>
-                    </div>
-                </a>
+  <section class="portfolio-section alt-bg">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Commandes Unix</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="card-grid">
+      <a href="https://github.com/Thomas-Migneret/My_ls" class="card-link" target="_blank" rel="noopener">
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><img src="../../img/ls.png" alt="My ls"><div class="card-overlay"></div></div>
+            <div class="flip-back"><div class="card-back-content"><span class="card-cat">C / Syscall</span><p class="card-title">My_ls</p><span class="card-duration">GitHub &#8594;</span></div></div>
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/Thomas-Migneret/My_top" class="card-link" target="_blank" rel="noopener">
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><img src="../../img/top.png" alt="My top"><div class="card-overlay"></div></div>
+            <div class="flip-back"><div class="card-back-content"><span class="card-cat">C / Proc</span><p class="card-title">My_top</p><span class="card-duration">GitHub &#8594;</span></div></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
 
-                <a href="https://github.com/Thomas-Migneret/My_world" class="card-link">
-                    <div class="flip-card">
-                        <div class="flip-inner">
-                            <div class="flip-front"><img src="../../img/earth.png" alt=""></div>
-                            <div class="flip-back"><p>My_world</p></div>
-                        </div>
-                    </div>
-                </a>
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-mono">thomas.migneret@epitech.eu</span>
+      <span class="footer-mono">&#169; 2025</span>
+    </div>
+  </footer>
 
-            </div>
-        </section>
-
-        <section class="section-title">
-            <h2 id="cass">Shell</h2>
-            <div class="card-grid">
-
-                <a href="https://github.com/Thomas-Migneret/Mini-shell" class="card-link">
-                    <div class="flip-card">
-                        <div class="flip-inner">
-                            <div class="flip-front"><img src="../../img/shell.png" alt=""></div>
-                            <div class="flip-back"><p>Mini-shell</p></div>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-        <section class="section-title">
-            <h2 id="cass">Command Unix</h2>
-            <div class="card-grid">
-
-                <a href="https://github.com/Thomas-Migneret/My_ls" class="card-link">
-                    <div class="flip-card">
-                        <div class="flip-inner">
-                            <div class="flip-front"><img src="../../img/ls.png" alt=""></div>
-                            <div class="flip-back"><p>My_ls</p></div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/Thomas-Migneret/My_top" class="card-link">
-                    <div class="flip-card">
-                        <div class="flip-inner">
-                            <div class="flip-front"><img src="../../img/top.png" alt=""></div>
-                            <div class="flip-back"><p>My_top</p></div>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer>
-            <p>&copy; thomas.migneret@epitech.eu</p>
-        </footer>
-
-    </body>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.flip-card, .section-header').forEach(el => observer.observe(el));
+  </script>
+</body>
 </html>

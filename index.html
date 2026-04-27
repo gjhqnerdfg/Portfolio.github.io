@@ -3,32 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio Professionnel</title>
+  <title>Thomas Migneret — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- ABOUT ME -->
-  <section class="about-me">
-    <div class="about-container">
-      <img src="img/moi.png" alt="Photo de profil" class="profile-pic">
-      <div class="about-text">
-        <h1 id="titre">Thomas MIGNERET</h1>
-        <h3 id="sous-titre">Étudiant à Epitech - L’école de l'excellence informatique</h3>
+  <div class="scan-line"></div>
+  <div class="noise-overlay"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="profile-wrapper">
+          <div class="profile-ring"></div>
+          <img src="img/moi.png" alt="Photo de profil" class="profile-pic">
+          <div class="profile-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Disponible</span>
+          </div>
+        </div>
       </div>
+      <div class="hero-right">
+        <div class="hero-tag">
+          <span class="tag-bracket">[</span>
+          <span class="tag-text">tek1 · epitech · 2030</span>
+          <span class="tag-bracket">]</span>
+        </div>
+        <h1 class="hero-name">Thomas<br><span class="accent">Migneret</span></h1>
+        <p class="hero-sub">Étudiant à Epitech — Cybersécurité & Développement Système</p>
+        <div class="hero-skills">
+          <span class="skill-tag">C / Systèmes</span>
+          <span class="skill-tag">Cybersécurité</span>
+          <span class="skill-tag">CTF</span>
+          <span class="skill-tag">Linux</span>
+        </div>
+        <a href="mailto:thomas.migneret@epitech.eu" class="cta-btn">
+          <span class="cta-icon">→</span> Me contacter
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll</span>
+      <div class="scroll-bar"></div>
     </div>
   </section>
 
   <!-- FORMATION -->
-  <section class="section-title">
-    <h2 id="cass">Formation</h2>
+  <section class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Formation</h2>
+      <div class="section-line"></div>
+    </div>
     <div class="card-grid">
 
       <a href="formation-ruissatel.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/ruissatel.jpg" alt=""></div>
-            <div class="flip-back"><p>Collège Le Ruissatel - 4 années</p></div>
+            <div class="flip-front">
+              <img src="img/ruissatel.jpg" alt="Collège Le Ruissatel">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Collège</span>
+                <p class="card-title">Le Ruissatel</p>
+                <span class="card-duration">4 années</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -36,8 +83,17 @@
       <a href="src/valabre.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/valabre.jpeg" alt=""></div>
-            <div class="flip-back"><p>Lycée agricole de Valabre - 1 année</p></div>
+            <div class="flip-front">
+              <img src="img/valabre.jpeg" alt="Lycée de Valabre">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Lycée agricole</span>
+                <p class="card-title">Valabre</p>
+                <span class="card-duration">1 année</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -45,17 +101,35 @@
       <a href="src/EME.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/eme.webp" alt=""></div>
-            <div class="flip-back"><p>Lycée professionnel EME - 2 années</p></div>
+            <div class="flip-front">
+              <img src="img/eme.webp" alt="Lycée EME">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Lycée pro</span>
+                <p class="card-title">EME</p>
+                <span class="card-duration">2 années</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
 
       <a href="src/epitech.html" class="card-link">
-        <div class="flip-card">
+        <div class="flip-card featured">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/epitech.jpg" alt=""></div>
-            <div class="flip-back"><p>Epitech - Promotion 2030</p></div>
+            <div class="flip-front">
+              <img src="img/epitech.jpg" alt="Epitech">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Grande école</span>
+                <p class="card-title">Epitech</p>
+                <span class="card-duration">Promo 2030</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -64,15 +138,28 @@
   </section>
 
   <!-- STAGES -->
-  <section class="section-title">
-    <h2 id="cass">Stages</h2>
+  <section class="portfolio-section alt-bg">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Stages</h2>
+      <div class="section-line"></div>
+    </div>
     <div class="card-grid">
 
       <a href="src/eveche.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/eveche.jpg" alt=""></div>
-            <div class="flip-back"><p>Évêché de Marseille - Technicien</p></div>
+            <div class="flip-front">
+              <img src="img/eveche.jpg" alt="Évêché de Marseille">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Stage</span>
+                <p class="card-title">Évêché de Marseille</p>
+                <span class="card-duration">Technicien</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -80,8 +167,17 @@
       <a href="src/timone.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/hp.jpg" alt=""></div>
-            <div class="flip-back"><p>Hôpital La Timone - Technicien réseau</p></div>
+            <div class="flip-front">
+              <img src="img/hp.jpg" alt="Hôpital La Timone">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Stage</span>
+                <p class="card-title">Hôpital La Timone</p>
+                <span class="card-duration">Technicien réseau</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -89,8 +185,17 @@
       <a href="src/synkso.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/synkso.png" alt=""></div>
-            <div class="flip-back"><p>Synkso - Technicien réseau</p></div>
+            <div class="flip-front">
+              <img src="img/synkso.png" alt="Synkso">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Stage</span>
+                <p class="card-title">Synkso</p>
+                <span class="card-duration">Technicien réseau</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -99,15 +204,28 @@
   </section>
 
   <!-- PROJETS -->
-  <section class="section-title">
-    <h2 id="cass">Projets</h2>
+  <section class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Projets</h2>
+      <div class="section-line"></div>
+    </div>
     <div class="card-grid">
 
       <a href="src/projet_github/github_project.html" class="card-link">
-        <div class="flip-card">
+        <div class="flip-card featured">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/epitech.png" alt=""></div>
-            <div class="flip-back"><p>Projets Epitech</p></div>
+            <div class="flip-front">
+              <img src="img/epitech.png" alt="Projets Epitech">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">GitHub</span>
+                <p class="card-title">Projets Epitech</p>
+                <span class="card-duration">Voir tout →</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -115,8 +233,17 @@
       <a href="projet-chef-oeuvre.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/chef.png" alt=""></div>
-            <div class="flip-back"><p>Projet Chef-d'œuvre</p></div>
+            <div class="flip-front">
+              <img src="img/chef.png" alt="Projet Chef-d'oeuvre">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Projet</span>
+                <p class="card-title">Chef-d'œuvre</p>
+                <span class="card-duration">Voir →</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -124,8 +251,17 @@
       <a href="projet-electronique.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/SOS.png" alt=""></div>
-            <div class="flip-back"><p>Projet électronique</p></div>
+            <div class="flip-front">
+              <img src="img/SOS.png" alt="Projet électronique">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Électronique</span>
+                <p class="card-title">SOS Chute</p>
+                <span class="card-duration">ESP32 · Arduino</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -133,8 +269,17 @@
       <a href="projet-reseau.html" class="card-link">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-front"><img src="img/gemalto.png" alt=""></div>
-            <div class="flip-back"><p>Projet réseau</p></div>
+            <div class="flip-front">
+              <img src="img/gemalto.png" alt="Projet réseau">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="flip-back">
+              <div class="card-back-content">
+                <span class="card-cat">Réseau</span>
+                <p class="card-title">Projet réseau</p>
+                <span class="card-duration">Voir →</span>
+              </div>
+            </div>
           </div>
         </div>
       </a>
@@ -144,8 +289,31 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; thomas.migneret@epitech.eu</p>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-mono">thomas.migneret@epitech.eu</span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-mono">© 2025</span>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    // Glitch effect sur le nom
+    const name = document.querySelector('.hero-name');
+    setInterval(() => {
+      name.classList.add('glitch');
+      setTimeout(() => name.classList.remove('glitch'), 200);
+    }, 5000);
+
+    // Fade-in au scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.flip-card, .section-header').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
