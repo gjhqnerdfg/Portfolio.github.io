@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lycée pro École Model d'électronique — Formation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg:#050807;
+        --panel:#0a100d;
+        --line:#12211a;
+        --green:#00ff9c;
+        --cyan:#29e7ff;
+        --text:#c9d6cf;
+        --muted:#5d7268;
+      }
+      *{box-sizing:border-box;}
+      html,body{margin:0;padding:0;}
+      body{
+        background:
+          radial-gradient(ellipse at 20% -10%, rgba(0,255,156,0.08), transparent 45%),
+          radial-gradient(ellipse at 90% 110%, rgba(41,231,255,0.06), transparent 45%),
+          var(--bg);
+        color:var(--text);
+        font-family:'JetBrains Mono', ui-monospace, monospace;
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:32px 16px;
+      }
+      .term{
+        width:100%;
+        max-width:760px;
+        border:1px solid var(--line);
+        background:var(--panel);
+        box-shadow:0 0 0 1px rgba(0,255,156,0.03), 0 30px 80px -30px rgba(0,255,156,0.15);
+        animation:rise .5s ease-out;
+      }
+      @keyframes rise{
+        from{opacity:0; transform:translateY(10px);}
+        to{opacity:1; transform:translateY(0);}
+      }
+      @media (prefers-reduced-motion: reduce){
+        .term{animation:none;}
+      }
+      .bar{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        padding:10px 14px;
+        border-bottom:1px solid var(--line);
+        background:#070b09;
+      }
+      .dot{width:10px;height:10px;border-radius:50%;background:#1c2b23;}
+      .path{
+        margin-left:10px;
+        font-size:12px;
+        color:var(--muted);
+        letter-spacing:.02em;
+      }
+      .body{
+        padding:40px 36px 44px;
+      }
+      .prompt{
+        color:var(--green);
+        font-size:13px;
+        margin-bottom:22px;
+      }
+      .prompt span{color:var(--muted);}
+      h1{
+        font-size:clamp(28px, 5vw, 40px);
+        line-height:1.15;
+        margin:0 0 22px;
+        color:#eafff4;
+        font-weight:800;
+      }
+      h1 em{
+        font-style:normal;
+        color:var(--green);
+        text-shadow:0 0 18px rgba(0,255,156,0.35);
+      }
+      .meta{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px 22px;
+        font-size:13px;
+        color:var(--cyan);
+        margin-bottom:26px;
+        border-left:2px solid var(--line);
+        padding-left:14px;
+      }
+      .meta div{color:var(--muted);}
+      .meta strong{color:var(--cyan); font-weight:500;}
+      p.body-text{
+        font-size:15.5px;
+        line-height:1.75;
+        color:var(--text);
+        max-width:60ch;
+      }
+      .stage{
+        margin-top:26px;
+        padding:16px 18px;
+        border:1px solid var(--line);
+        background:#070c0a;
+        font-size:14px;
+        color:var(--text);
+      }
+      .stage .label{color:var(--green); display:block; margin-bottom:6px; font-size:12px;}
+      .stage ul{margin:0; padding-left:18px;}
+      .stage li{margin-bottom:4px;}
+      .back{
+        display:inline-block;
+        margin-top:36px;
+        color:var(--muted);
+        text-decoration:none;
+        font-size:13px;
+        border-bottom:1px solid var(--line);
+        padding-bottom:2px;
+      }
+      .back:hover{color:var(--green); border-color:var(--green);}
+      .cursor{
+        display:inline-block;
+        width:8px;height:16px;
+        background:var(--green);
+        vertical-align:middle;
+        margin-left:4px;
+        animation:blink 1s step-end infinite;
+      }
+      @keyframes blink{50%{opacity:0;}}
+    </style>
+  </head>
+  <body>
+    <div class="term">
+      <div class="bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="path">~/parcours/lycee_pro_electronique.formation</div>
+      </div>
+      <div class="body">
+        <div class="prompt"><span>peux@marseille:~$</span> cat lycee_pro_electronique.formation</div>
+        <h1>Lycée pro <em>École Model d'électronique</em></h1>
+        <div class="meta">
+          <div>Ville : <strong>Marseille 13011</strong></div>
+          <div>Durée : <strong>2 ans</strong></div>
+          <div>Diplôme : <strong>BAC pro — mention Bien</strong></div>
+        </div>
+        <p class="body-text">
+          Deux années à l'École Model d'électronique, à Marseille, sanctionnées par un BAC pro
+          obtenu avec la mention Bien. Cette formation m'a permis d'enchaîner plusieurs stages
+          dans des environnements très différents, en entreprise comme dans le secteur public,
+          et de confirmer mon goût pour le terrain technique.
+        </p>
+        <div class="stage">
+          <span class="label">// stages effectués</span>
+          <ul>
+            <li>Cybermania</li>
+            <li>Hôpital de la Timone, Marseille</li>
+            <li>Commissariat de l'Évêché, Marseille</li>
+          </ul>
+        </div>
+        <a class="back" href="../../index.html">&larr; retour à la page principale<span class="cursor"></span></a>
+      </div>
+    </div>
+  </body>
+</html>
