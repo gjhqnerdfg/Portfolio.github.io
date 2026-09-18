@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Détecteur de chute EHPAD — Projet Arduino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050807;
+    --panel:#0a100d;
+    --line:#12211a;
+    --green:#00ff9c;
+    --cyan:#29e7ff;
+    --text:#c9d6cf;
+    --muted:#5d7268;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(0,255,156,0.08), transparent 45%),
+      radial-gradient(ellipse at 90% 20%, rgba(41,231,255,0.06), transparent 45%),
+      var(--bg);
+    color:var(--text);
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    padding:32px 16px 80px;
+  }
+  .wrap{max-width:860px; margin:0 auto;}
+  .term{
+    border:1px solid var(--line);
+    background:var(--panel);
+    box-shadow:0 0 0 1px rgba(0,255,156,0.03), 0 30px 80px -30px rgba(0,255,156,0.15);
+    animation:rise .5s ease-out;
+    margin-bottom:28px;
+  }
+  @keyframes rise{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){ .term{animation:none;} }
+  .bar{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 14px; border-bottom:1px solid var(--line); background:#070b09;
+  }
+  .dot{width:10px;height:10px;border-radius:50%;background:#1c2b23;}
+  .dot.live{background:var(--green); box-shadow:0 0 8px var(--green);}
+  .path{margin-left:10px; font-size:12px; color:var(--muted); letter-spacing:.02em;}
+  .body{padding:40px 36px 44px;}
+  @media (max-width:640px){ .body{padding:28px 20px 32px;} }
+  .prompt{color:var(--green); font-size:13px; margin-bottom:22px;}
+  .prompt span{color:var(--muted);}
+  h1{
+    font-size:clamp(26px, 5vw, 38px); line-height:1.15; margin:0 0 10px;
+    color:#eafff4; font-weight:800;
+  }
+  h1 em{ font-style:normal; color:var(--green); text-shadow:0 0 18px rgba(0,255,156,0.35); }
+  .subtitle{ color:var(--cyan); font-size:14px; margin-bottom:24px; }
+  .meta{
+    display:flex; flex-wrap:wrap; gap:10px 22px; font-size:13px; color:var(--cyan);
+    margin-bottom:8px; border-left:2px solid var(--line); padding-left:14px;
+  }
+  .meta div{color:var(--muted);}
+  .meta strong{color:var(--cyan); font-weight:500;}
+
+  .section{ margin-top:10px; }
+  .section h2{
+    font-size:20px; color:var(--green); margin:0 0 16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .section h2::before{ content:"//"; color:var(--muted); font-weight:400; }
+  .section h3{
+    font-size:15px; color:var(--cyan); margin:26px 0 10px; font-weight:500;
+  }
+  p.body-text{ font-size:15.5px; line-height:1.75; color:var(--text); max-width:65ch; margin:0 0 14px; }
+  ul.clean{ margin:0 0 14px; padding-left:20px; }
+  ul.clean li{ font-size:15.5px; line-height:1.75; color:var(--text); margin-bottom:6px; }
+  ul.clean li strong{ color:var(--cyan); font-weight:500; }
+
+  .tag-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .tag{
+    border:1px solid var(--line); background:#070c0a; color:var(--green);
+    font-size:12.5px; padding:6px 12px;
+  }
+
+  .imgs{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0 24px;
+  }
+  @media (max-width:640px){ .imgs{grid-template-columns:1fr;} }
+  figure{ margin:0; border:1px solid var(--line); background:#070c0a; padding:10px; }
+  figure img{
+    width:100%; display:block; border:1px solid var(--line);
+  }
+  figcaption{
+    font-size:12.5px; color:var(--muted); margin-top:10px; text-align:center; line-height:1.5;
+  }
+
+  .btn-def{
+    border-left:2px solid var(--line); padding-left:14px; margin-bottom:12px;
+  }
+  .btn-def .name{ color:var(--green); font-size:14px; margin-bottom:3px; }
+  .btn-def .desc{ font-size:14.5px; color:var(--text); line-height:1.6; }
+
+  .stage{
+    margin-top:10px; padding:16px 18px; border:1px solid var(--line);
+    background:#070c0a; font-size:14px; color:var(--text);
+  }
+  .stage .label{ color:var(--green); display:block; margin-bottom:6px; font-size:12px; }
+
+  .codebox{
+    background:#04060a; border:1px solid var(--line); overflow-x:auto;
+    margin:14px 0 8px; position:relative;
+  }
+  .codebox .barcode{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 14px; border-bottom:1px solid var(--line); font-size:12px; color:var(--muted);
+  }
+  .codebox pre{
+    margin:0; padding:18px 20px; font-size:12.5px; line-height:1.65;
+    color:#b9f5d0; white-space:pre; overflow-x:auto;
+  }
+  .codebox .cm{ color:#5d7268; }
+  .codebox .kw{ color:var(--cyan); }
+  .codebox .str{ color:#ffcc66; }
+  .redact{ color:#ff6b7a; font-style:italic; }
+
+  .note{
+    margin:14px 0 24px; padding:14px 16px; border:1px dashed var(--line);
+    background:#070c0a; font-size:13px; color:var(--muted); line-height:1.6;
+  }
+  .note strong{ color:var(--cyan); }
+
+  .back{
+    display:inline-block; margin-top:10px; color:var(--muted); text-decoration:none;
+    font-size:13px; border-bottom:1px solid var(--line); padding-bottom:2px;
+  }
+  .back:hover{ color:var(--green); border-color:var(--green); }
+  .cursor{
+    display:inline-block; width:8px;height:16px; background:var(--green);
+    vertical-align:middle; margin-left:4px; animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="term">
+    <div class="bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot live"></div>
+      <div class="path">~/projets/detecteur_chute_ehpad.project</div>
+    </div>
+    <div class="body">
+      <div class="prompt"><span>peux@lpo-eme:~$</span> cat detecteur_chute_ehpad.project</div>
+      <h1>Détecteur de chute pour <em>EHPAD</em></h1>
+      <div class="subtitle">Carte Arduino + gyroscope — projet de terminale Bac Pro SN</div>
+      <div class="meta">
+        <div>Établissement : <strong>Lycée pro École Model d'électronique</strong></div>
+        <div>Niveau : <strong>Terminale Bac Pro SN</strong></div>
+        <div>Durée : <strong>~1 an</strong></div>
+      </div>
+
+      <div class="section">
+        <h2>Contexte général</h2>
+        <p class="body-text">
+          En terminale Bac Pro SN, on devait réaliser un projet de groupe autour d'une carte Arduino
+          et d'un gyroscope, avec le choix entre deux thématiques : un système de détection de chute
+          pour EHPAD, ou un détecteur de séisme. Avec mon groupe, on est partis sur l'EHPAD.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Contexte</h2>
+        <p class="body-text">
+          Dans un EHPAD, les résidents sont souvent à risque de chute, ce qui peut être dangereux
+          pour leur santé. Quand une chute arrive, il faut que le personnel soit prévenu rapidement
+          pour intervenir. Aujourd'hui, les soignants font des rondes régulières ou attendent qu'un
+          résident appelle à l'aide, ce qui peut prendre du temps et retarder la prise en charge.
+        </p>
+        <p class="body-text">
+          On a donc voulu créer un système capable de détecter les chutes et de prévenir les
+          soignants en temps réel, en indiquant précisément la chambre concernée — le tout sur le
+          réseau interne de l'établissement, pour garder les informations des résidents
+          confidentielles.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Objectif du projet</h2>
+        <ul class="clean">
+          <li>Détecter une chute à l'aide de capteurs placés sur ou près des résidents</li>
+          <li>Transmettre une alerte au personnel soignant en temps réel</li>
+          <li>Indiquer précisément l'identité du résident et le numéro de la chambre concernée</li>
+          <li>Permettre aux soignants de consulter rapidement les informations médicales
+            importantes du résident (fiche médicale, contact d'urgence) sur une interface dédiée</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Technologies et matériels</h2>
+        <div class="tag-row">
+          <div class="tag">Carte Arduino</div>
+          <div class="tag">Arduino UNO R4 WiFi</div>
+          <div class="tag">Gyroscope MPU9250</div>
+          <div class="tag">VS Code</div>
+          <div class="tag">Arduino IDE</div>
+          <div class="tag">EmailJS</div>
+          <div class="tag">MacroDroid</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Démonstration</h2>
+        <h3>MacroDroid</h3>
+        <p class="body-text">
+          MacroDroid permet d'ouvrir automatiquement un fichier dès qu'on reçoit un mail contenant
+          le mot "chute". Le fichier ouvert est l'<em>index.html</em> du site qu'on a créé.
+        </p>
+        <h3>Réception du message</h3>
+        <p class="body-text">
+          Si un résident tombe, un mail d'alerte est envoyé directement à l'infirmier(ère).
+        </p>
+        <div class="imgs">
+          <figure>
+            <img src="assets/macrodroid.jpg" alt="Configuration MacroDroid déclenchant l'ouverture du site à la réception d'un mail contenant le mot chute">
+            <figcaption>Macro MacroDroid déclenchée par un mail contenant "chute"</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/reception-mail.jpg" alt="Notification de réception d'un mail d'alerte de chute détectée sur smartphone">
+            <figcaption>Notification reçue par l'infirmier(ère)</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Vue du site</h2>
+        <p class="body-text">
+          Quand le téléphone de l'infirmier(ère) reçoit le message, le site s'ouvre automatiquement
+          sur la page du résident concerné.
+        </p>
+        <div class="imgs">
+          <figure>
+            <img src="assets/vue-site-1.jpg" alt="Page individuelle d'un patient avec boutons SOS famille, SAMU et pompiers">
+            <figcaption>Page dédiée à un résident, avec les boutons d'appel rapide</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/vue-site-2.jpg" alt="Tableau listant les résidents avec formulaire d'ajout d'un nouveau patient">
+            <figcaption>Tableau des résidents et formulaire d'ajout</figcaption>
+          </figure>
+        </div>
+
+        <h3>Signification des boutons</h3>
+        <div class="btn-def">
+          <div class="name">Dossier patient</div>
+          <div class="desc">Permet de modifier les informations du résident.</div>
+        </div>
+        <div class="btn-def">
+          <div class="name">Afficher le texte</div>
+          <div class="desc">Permet d'afficher le contenu du dossier patient.</div>
+        </div>
+        <div class="btn-def">
+          <div class="name">Boutons ronds (SOS)</div>
+          <div class="desc">Servent à appeler directement la personne concernée : pompiers, SAMU, famille, etc.</div>
+        </div>
+        <div class="btn-def">
+          <div class="name">Tableau des résidents</div>
+          <div class="desc">Affiche le prénom, le nom et la chambre de chaque résident, avec un bouton menant vers sa page dédiée.</div>
+        </div>
+        <div class="btn-def">
+          <div class="name">Formulaire d'ajout</div>
+          <div class="desc">Permet d'ajouter un nouveau résident en renseignant ses informations.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Code source Arduino</h2>
+        <p class="body-text">
+          Le code gère la lecture du gyroscope, la connexion Wi-Fi de la carte, et l'envoi d'un
+          mail d'alerte par SMTP dès qu'une chute est détectée.
+        </p>
+        <div class="codebox">
+          <div class="barcode"><span>arduino_chute.ino</span><span>C++</span></div>
+          <pre><span class="cm">// Inclusion des bibliothèques nécessaires</span>
+#include &lt;WiFi.h&gt;                  <span class="cm">// Pour la connexion au réseau Wi-Fi</span>
+#include &lt;WiFiClientSecure.h&gt;     <span class="cm">// Pour établir une connexion sécurisée (SSL) au serveur SMTP</span>
+#include &lt;MPU9250.h&gt;              <span class="cm">// Bibliothèque standard pour le capteur MPU9250 (accéléromètre + gyroscope)</span>
+#include &lt;MPU9250_asukiaaa.h&gt;     <span class="cm">// Bibliothèque complémentaire, plus pratique pour interagir avec le capteur</span>
+
+<span class="cm">// Création de l'objet capteur MPU9250</span>
+MPU9250_asukiaaa mySensor;
+
+<span class="cm">// Variables pour stocker les données d'accélération et gyroscopiques</span>
+<span class="kw">float</span> aX, aY, aZ, aSqrt; <span class="cm">// Accélération sur les 3 axes et norme</span>
+<span class="kw">float</span> gX, gY, gZ;        <span class="cm">// Vitesses angulaires sur les 3 axes</span>
+
+<span class="cm">// Informations de connexion au réseau Wi-Fi</span>
+<span class="kw">const char*</span> ssid = <span class="str">"NOM_DU_RESEAU"</span>;       <span class="cm">// Nom du réseau Wi-Fi</span>
+<span class="kw">const char*</span> password = <span class="redact">"&lt;masqué&gt;"</span>;         <span class="cm">// Mot de passe du Wi-Fi</span>
+
+<span class="cm">// Paramètres de connexion SMTP à Gmail</span>
+<span class="kw">const char*</span> smtp_server = <span class="str">"smtp.gmail.com"</span>; <span class="cm">// Adresse du serveur SMTP Gmail</span>
+<span class="kw">const uint16_t</span> smtp_port = 465;             <span class="cm">// Port utilisé pour la connexion sécurisée (SSL)</span>
+
+<span class="cm">// Informations d'envoi d'email</span>
+<span class="kw">const char*</span> email_sender = <span class="str">"projet.esp32.chute@gmail.com"</span>;     <span class="cm">// Adresse email de l'expéditeur</span>
+<span class="kw">const char*</span> email_password = <span class="redact">"&lt;masqué&gt;"</span>;               <span class="cm">// Mot de passe d'application (Gmail)</span>
+<span class="kw">const char*</span> email_recipient = <span class="str">"destinataire@exemple.fr"</span>;    <span class="cm">// Adresse du destinataire de l'alerte</span>
+
+WiFiClientSecure client;  <span class="cm">// Objet pour gérer la connexion sécurisée au serveur SMTP</span>
+
+<span class="kw">void</span> setup() {
+  Serial.begin(115200); <span class="cm">// Démarre la communication série (pour debug dans le moniteur série)</span>
+  Wire.begin();         <span class="cm">// Initialise la communication I2C (entre l'ESP32 et le capteur)</span>
+  mySensor.setWire(&amp;Wire); <span class="cm">// Configure le capteur pour utiliser le bus I2C</span>
+  mySensor.beginAccel();   <span class="cm">// Initialise la partie accéléromètre du capteur</span>
+
+  connectToWiFi();         <span class="cm">// Connexion au réseau Wi-Fi</span>
+
+  <span class="cm">// Test d'envoi d'email au démarrage (permet de vérifier que tout fonctionne)</span>
+  <span class="kw">if</span> (sendEmail()) {
+    Serial.println(<span class="str">"Email envoyé avec succès !"</span>);
+  } <span class="kw">else</span> {
+    Serial.println(<span class="str">"Échec de l'envoi de l'email."</span>);
+  }
+}
+
+<span class="kw">void</span> loop() {
+  <span class="cm">// Mise à jour des données d'accélération</span>
+  mySensor.accelUpdate();
+  aSqrt = mySensor.accelSqrt();  <span class="cm">// Calcul de la norme de l'accélération (accélération totale)</span>
+
+  <span class="cm">// Affiche la valeur d'accélération calculée dans le moniteur série</span>
+  Serial.print(<span class="str">"ASQRT: "</span>);
+  Serial.println(aSqrt);
+
+  delay(300); <span class="cm">// Petite pause entre les mesures</span>
+
+  <span class="cm">// Si une chute est détectée (accélération brutale), envoie un email d'alerte</span>
+  <span class="kw">if</span> (aSqrt &gt;= 10) {
+    sendEmail();  <span class="cm">// Déclenchement de l'alerte email</span>
+  }
+}
+
+<span class="cm">// Fonction pour connecter l'ESP32 au réseau Wi-Fi</span>
+<span class="kw">void</span> connectToWiFi() {
+  Serial.print(<span class="str">"Connexion au Wi-Fi "</span>);
+  Serial.println(ssid);
+  WiFi.begin(ssid, password); <span class="cm">// Lance la connexion</span>
+
+  <span class="cm">// Attente de la connexion complète</span>
+  <span class="kw">while</span> (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(<span class="str">"."</span>);
+  }
+
+  <span class="cm">// Affiche des informations une fois connecté</span>
+  Serial.println(<span class="str">""</span>);
+  Serial.println(<span class="str">"Connecté au réseau Wi-Fi !"</span>);
+  Serial.print(<span class="str">"Adresse IP : "</span>);
+  Serial.println(WiFi.localIP());
+}
+
+<span class="cm">// Fonction pour attendre une réponse du serveur SMTP</span>
+<span class="kw">bool</span> waitForSMTPResponse(<span class="kw">int</span> expectedCode, <span class="kw">uint16_t</span> timeout = 10000) {
+  uint32_t start = millis();
+  String response;
+  <span class="kw">bool</span> isFinalLine = <span class="kw">false</span>;
+
+  <span class="cm">// Attend une réponse jusqu'à ce que le délai soit dépassé ou que la réponse soit complète</span>
+  <span class="kw">while</span> (!isFinalLine) {
+    <span class="kw">while</span> (!client.available()) {
+      <span class="kw">if</span> (millis() - start &gt; timeout) {
+        Serial.println(<span class="str">"Timeout d'attente de réponse SMTP."</span>);
+        <span class="kw">return false</span>;
+      }
+      delay(10);
+    }
+
+    String line = client.readStringUntil(<span class="str">'\n'</span>); <span class="cm">// Lecture ligne par ligne</span>
+    line.trim();
+    response += line + <span class="str">"\n"</span>;
+
+    <span class="cm">// Vérifie si c'est la dernière ligne de la réponse SMTP</span>
+    <span class="kw">if</span> (line.length() &gt;= 4 &amp;&amp; line[3] != <span class="str">'-'</span>) {
+      isFinalLine = <span class="kw">true</span>;
+    }
+  }
+
+  Serial.println(<span class="str">"SMTP Response: "</span>);
+  Serial.println(response);
+
+  <span class="cm">// Vérifie que le code de réponse correspond à ce qui est attendu</span>
+  <span class="kw">return</span> response.startsWith(String(expectedCode));
+}
+
+<span class="cm">// Fonction principale pour envoyer un email via le serveur SMTP Gmail</span>
+<span class="kw">bool</span> sendEmail() {
+  Serial.println(<span class="str">"Connexion au serveur SMTP..."</span>);
+  client.setInsecure(); <span class="cm">// Ignore les certificats SSL (non recommandé en production)</span>
+  <span class="kw">if</span> (!client.connect(smtp_server, smtp_port)) {
+    Serial.println(<span class="str">"Échec de la connexion au serveur SMTP."</span>);
+    <span class="kw">return false</span>;
+  }
+  Serial.println(<span class="str">"Connexion réussie au serveur SMTP."</span>);
+
+  <span class="cm">// Suite de la procédure SMTP standard (EHLO, AUTH LOGIN, etc.)</span>
+  <span class="kw">if</span> (!waitForSMTPResponse(220, 20000)) <span class="kw">return false</span>;
+  client.println(<span class="str">"EHLO ESP32"</span>);
+  <span class="kw">if</span> (!waitForSMTPResponse(250)) <span class="kw">return false</span>;
+
+  client.println(<span class="str">"AUTH LOGIN"</span>);
+  <span class="kw">if</span> (!waitForSMTPResponse(334)) <span class="kw">return false</span>;
+
+  client.println(encodeBase64(email_sender));   <span class="cm">// Envoie l'email encodé en base64</span>
+  <span class="kw">if</span> (!waitForSMTPResponse(334)) <span class="kw">return false</span>;
+
+  client.println(encodeBase64(email_password)); <span class="cm">// Envoie le mot de passe encodé en base64</span>
+  <span class="kw">if</span> (!waitForSMTPResponse(235)) <span class="kw">return false</span>;
+
+  <span class="cm">// Informations d'envoi et de réception</span>
+  client.print(<span class="str">"MAIL FROM: &lt;"</span>);
+  client.print(email_sender);
+  client.println(<span class="str">"&gt;"</span>);
+  <span class="kw">if</span> (!waitForSMTPResponse(250, 20000)) <span class="kw">return false</span>;
+
+  client.print(<span class="str">"RCPT TO: &lt;"</span>);
+  client.print(email_recipient);
+  client.println(<span class="str">"&gt;"</span>);
+  <span class="kw">if</span> (!waitForSMTPResponse(250)) <span class="kw">return false</span>;
+
+  <span class="cm">// Contenu du message</span>
+  client.println(<span class="str">"DATA"</span>);
+  <span class="kw">if</span> (!waitForSMTPResponse(354)) <span class="kw">return false</span>;
+  client.println(<span class="str">"Subject: Chute détectée"</span>);
+  client.println(<span class="str">"Une chute a été détectée. Veuillez vérifier immédiatement !"</span>);
+  client.println(<span class="str">"."</span>); <span class="cm">// Fin du message</span>
+  <span class="kw">if</span> (!waitForSMTPResponse(250, 20000)) <span class="kw">return false</span>;
+
+  client.println(<span class="str">"QUIT"</span>); <span class="cm">// Termination propre de la session SMTP</span>
+  <span class="kw">if</span> (!waitForSMTPResponse(221)) <span class="kw">return false</span>;
+
+  <span class="kw">return true</span>; <span class="cm">// Email envoyé avec succès</span>
+}
+
+<span class="cm">// Fonction qui encode une chaîne de caractères en base64 (utilisée pour l'authentification SMTP)</span>
+String encodeBase64(<span class="kw">const char*</span> input) {
+  <span class="kw">static const char*</span> base64_chars =
+    <span class="str">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>
+    <span class="str">"abcdefghijklmnopqrstuvwxyz"</span>
+    <span class="str">"0123456789+/"</span>;
+
+  String output;
+  <span class="kw">int</span> i = 0, j = 0;
+  <span class="kw">unsigned char</span> char_array_3[3], char_array_4[4];
+
+  <span class="cm">// Encodage de chaque bloc de 3 octets</span>
+  <span class="kw">while</span> (*input) {
+    char_array_3[i++] = *(input++);
+    <span class="kw">if</span> (i == 3) {
+      char_array_4[0] = (char_array_3[0] &amp; 0xfc) &gt;&gt; 2;
+      char_array_4[1] = ((char_array_3[0] &amp; 0x03) &lt;&lt; 4) + ((char_array_3[1] &amp; 0xf0) &gt;&gt; 4);
+      char_array_4[2] = ((char_array_3[1] &amp; 0x0f) &lt;&lt; 2) + ((char_array_3[2] &amp; 0xc0) &gt;&gt; 6);
+      char_array_4[3] = char_array_3[2] &amp; 0x3f;
+
+      <span class="kw">for</span> (i = 0; i &lt; 4; i++) output += base64_chars[char_array_4[i]];
+      i = 0;
+    }
+  }
+
+  <span class="cm">// Gestion des caractères restants</span>
+  <span class="kw">if</span> (i) {
+    <span class="kw">for</span> (j = i; j &lt; 3; j++) char_array_3[j] = <span class="str">'\0'</span>;
+
+    char_array_4[0] = (char_array_3[0] &amp; 0xfc) &gt;&gt; 2;
+    char_array_4[1] = ((char_array_3[0] &amp; 0x03) &lt;&lt; 4) + ((char_array_3[1] &amp; 0xf0) &gt;&gt; 4);
+    char_array_4[2] = ((char_array_3[1] &amp; 0x0f) &lt;&lt; 2) + ((char_array_3[2] &amp; 0xc0) &gt;&gt; 6);
+    char_array_4[3] = char_array_3[2] &amp; 0x3f;
+
+    <span class="kw">for</span> (j = 0; j &lt; i + 1; j++) output += base64_chars[char_array_4[j]];
+    <span class="kw">while</span> (i++ &lt; 3) output += <span class="str">'='</span>;
+  }
+
+  <span class="kw">return</span> output;
+}</pre>
+
+      <div class="section">
+        <h2>Bilan</h2>
+        <p class="body-text">
+          Ce projet a pris une année pour être totalement terminé. On a dû reprendre le code de
+          l'Arduino depuis zéro à deux reprises, ainsi que le code du site (surtout le CSS) une
+          fois. Il a aussi fallu un nombre incalculable d'essais pour faire fonctionner MacroDroid
+          correctement, mais après une année de travail, on est fiers d'y être arrivés.
+        </p>
+        <p class="body-text">
+          Ce projet a été pensé pour un EHPAD, mais le système qu'on a créé peut être adapté à
+          d'autres usages, comme la détection de tremblements de terre.
+        </p>
+      </div>
+
+      <a class="back" href="../../index.html">&larr; retour à la page principale<span class="cursor"></span></a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
